@@ -6,3 +6,6 @@ install_manifest.txt
 .buildpath
 .project
 .settings
+/nbproject/private/MyProject.komodoproject
+MyProject.komodoproject
+nbproject
