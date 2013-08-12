@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.class{
+	background: url('../img/image.jpg') #ffffff !important;
+}
+
+#id{
+	color:red;
+}
