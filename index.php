@@ -34,8 +34,8 @@ $sql =  'SELECT '.
 		'INNER JOIN pg_content_01 pc ON pc.id = p.content_id '.
 		'LEFT JOIN library l1 ON l1.id=pc.image1_id '.
 		'WHERE p.id = "1" ';
-		
-$res = query( $sql );	
+
+$res = query( $sql );
 
 $i = mysql_fetch_assoc($res);
 $meta_title = stripslashes(strip_tags($i['title']));
@@ -56,7 +56,7 @@ require_once('header.php');
 			<div class="hero"><!-- begin hero -->
 				<?=getSlideshow();?>
 				<?//=(!empty($i['image1_id_link'])?getLinks($i['image1_id_link'],(file_exists($i['image1_id_filename'])&&!is_dir($i['image1_id_filename'])?'<img src="'.ROOT.$i['image1_id_filename'].'" alt="" />':'')):'');?>
-			
+
 			</div><!-- end hero -->
 		</div><!-- end col_mid -->
 		<div class="col_right">
@@ -92,8 +92,8 @@ require_once('header.php');
 /*********************************************************
 					SLIDESHOW
 **********************************************************/
-function getSlideshow() {	
-	$sql =  
+function getSlideshow() {
+	$sql =
 		'SELECT '.
 		'pc.image1_id_link, pc.image2_id_link, pc.image3_id_link, pc.image4_id_link, pc.image5_id_link, '.
 		'CONCAT("'.FILE_PATH_LIBRARY.'", l1.filename) AS image1_id_filename, '.
@@ -109,14 +109,14 @@ function getSlideshow() {
 		'LEFT JOIN library l4 ON l4.id=pc.image4_id '.
 		'LEFT JOIN library l5 ON l5.id=pc.image5_id '.
 		'WHERE p.id = "1" ';
-	
+
 	$res = query($sql);
-	
+
 	$slideshow = '';
 	$slideshow .= '<div id="slideID" class="divshow">';
 	while($s = mysql_fetch_assoc($res)) {
 		for( $n=1; $n<6; $n++ ) {
-			if($s['image'.($n).'_id_filename']) {	
+			if($s['image'.($n).'_id_filename']) {
 				$slideshow .= '<div class="slide">';
 				if(!empty($s['image'.$n.'_id_link'])) {
 					$slideshow .= '<a href="'.$s['image'.$n.'_id_link'].'">';
@@ -125,7 +125,7 @@ function getSlideshow() {
 				} else {
 					$slideshow .= '<img src="'.$s['image'.$n.'_id_filename'].'" />';
 				}
-				$slideshow .= '</div><!-- end slide -->';	
+				$slideshow .= '</div><!-- end slide -->';
 			}
 		}
 	}
@@ -152,12 +152,12 @@ function getLatestNews($limit=3) {
 			"WHERE ".
 			"expiration_date > '".date("Y-m-d")."' OR expiration_date = '0000-00-00' ".
 			"ORDER BY news_date DESC LIMIT ".$limit;
-	
+
 	$res = query($sql);
-	
+
 	if (mysql_num_rows($res)) {
 		$str = '<ul class="home_news">'."\n";
-		
+
 		while ($i = mysql_fetch_assoc($res)) {
 			$str .= '<li>';
 			$str .= '<span class="date">';
@@ -171,45 +171,5 @@ function getLatestNews($limit=3) {
 		$str .= '</ul>'."\n";
 	}
 	return $str;
-}
-/*********************************************************
-						LINKS
-**********************************************************/
-function getLinks($input,$content,$a_class='') {
-	$link = '';
-	$a_class = (!empty($a_class)?' class="'.$a_class.'"':'');	
-
-	if(substr($input,0,3)=='nw_') {
-		$input = str_replace('nw_','',$input);
-		$target = ' target="_blank"';
-	} else {
-		$target = '';
-	}
-	
-	$link .= '<a '.$a_class.' href="'.stripslashes($input).'"'.$target.'>';
-	$link .= $content;
-	$link .= '</a>';
-	return $link;
-}
-
-function getQuickLinks($input) {
-	$link = '';
-	$link .= '<ul id="side_nav">';
-	for($i=1;$i<=8;$i++) {
-		if(substr($input['ql'.$i],0,3)=='nw_') {
-			$input['ql'.$i] = str_replace('nw_','',$input['ql'.$i]);
-			$target = ' target="_blank"';
-		} else {
-			$target = '';
-		}
-		if(!empty($input['ql_title'.$i]) && !empty($input['ql'.$i])) {
-			$link .= '<li>';
-			$link .= '<a href="'.stripslashes($input['ql'.$i]).'"'.$target.'>';
-			$link .= $input['ql_title'.$i];
-			$link .= '</a>';
-			$link .= '</li>';
-		}
-	}
-	return $link;
 }
 ?>
