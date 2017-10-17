@@ -9,7 +9,7 @@ session_start();
 $_SESSION['page_id'] = 1;
 $page_id = 1;
 echo $page_id;
-die('test2');
+die('test3');
 
 
 
