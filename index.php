@@ -9,7 +9,10 @@ session_start();
 $_SESSION['page_id'] = 1;
 $page_id = 1;
 echo $page_id;
-die();
+die('test1');
+
+
+
 
 // setup default content
 $meta_title = '';
