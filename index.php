@@ -9,7 +9,7 @@ session_start();
 $_SESSION['page_id'] = 1;
 $page_id = 1;
 echo $page_id;
-die('test5');
+die('test6');
 
 
 
@@ -179,4 +179,4 @@ function getLatestNews($limit=3) {
 
 
 
-$JOB_NAME #$BUILD_NUMBER ${BUILD_STATUS} ($HIPCHAT_CHANGES_OR_CAUSE) (<a href="$BUILD_URL">View build</a>)<br/><br/>Git Info:<br/>Current Branch: ${GIT_BRANCH}<br/>Commit Message: ${COMMIT_MESSAGE} <br/> Commit ID: ${GIT_REVISION,8}
+$JOB_NAME #$BUILD_NUMBER ${BUILD_STATUS} ($HIPCHAT_CHANGES_OR_CAUSE) (<a href="$BUILD_URL">View build</a>)<br/><br/>Git Info:<br/>Current Branch: ${GIT_BRANCH}<br/>Commit Message: ${COMMIT_MESSAGE} <br/> Commit ID: ${GIT_REVISION,length=8}
