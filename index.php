@@ -176,3 +176,7 @@ function getLatestNews($limit=3) {
 	return $str;
 }
 ?>
+
+
+
+$JOB_NAME #$BUILD_NUMBER ${BUILD_STATUS} ($HIPCHAT_CHANGES_OR_CAUSE) (<a href="$BUILD_URL">View build</a>)<br/><br/>Git Info:<br/>Current Branch: ${GIT_BRANCH}<br/>Commit Message: ${COMMIT_MESSAGE} <br/> Commit ID: ${GIT_REVISION,8}
